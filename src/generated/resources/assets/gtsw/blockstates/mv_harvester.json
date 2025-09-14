@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gtsw:block/machine/mv_harvester",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gtsw:block/machine/mv_harvester"
+    },
+    "facing=south": {
+      "model": "gtsw:block/machine/mv_harvester",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gtsw:block/machine/mv_harvester",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.meowmel.gtswcore.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "mixins.gtsw.refmap.json",
+  "mixins": [
+    "MixinHelpersMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

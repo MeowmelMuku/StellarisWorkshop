@@ -82,6 +82,20 @@ repositories {
     maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
     maven { url = "https://maven.quiltmc.org/repository/release/" } // Quilt Mappings
 
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
+
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.rtyley"
+        }
+    }
 }
 
 version = mod_version
@@ -98,7 +112,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-//            mods { "${mod_id}" { source sourceSets.main } }
+            mods { "${mod_id}" { source sourceSets.main } }
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
         }
@@ -119,8 +133,8 @@ apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
 mixin {
     // MixinGradle Settings
-    add sourceSets.main, 'mixins.gtse.refmap.json'
-    config 'gtse.mixins.json'
+    add sourceSets.main, 'mixins.gtsw.refmap.json'
+    config 'gtsw.mixins'
 
     debug.verbose = true
     debug.export = true
@@ -130,7 +144,7 @@ mixin {
 //    silentMojangMappingsLicense()
 //    forge {
 //        mixinConfigs = [
-//                "gtse.mixin.json"
+//                "gtsw.mixin.json"
 //        ]
 //
 //        dataGen {
@@ -144,32 +158,25 @@ mixin {
 //}
 
 dependencies {
-//    mappings loom.layered {
-//        it.mappings("org.quiltmc:quilt-mappings:${libs.versions.minecraft.get()}+build.${libs.versions.quiltMappings.get()}:intermediary-v2")
-//        it.parchment("org.parchmentmc.data:parchment-${libs.versions.minecraft.get()}:${libs.versions.parchment.get()}@zip")
-//        it.officialMojangMappings { nameSyntheticMembers = false }
-//    }
-
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // JEI, EMI, Jade
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-//    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    runtimeOnly fg.deobf("curse.maven:jade-324717:5390389")
-
-    // GregTech and dependencies
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim") { transitive = false }
     implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") { transitive = false }
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
-    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-    implementation fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
 
+    implementation fg.deobf("curse.maven:jei-238222:6600311")
+    implementation fg.deobf("curse.maven:jade-324717:5390389")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.11")
+    implementation fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
+    implementation fg.deobf("appeng:appliedenergistics2-forge:15.0.18")
+    runtimeOnly fg.deobf("dev.architectury:architectury-forge:9.2.14")
+
+    implementation fg.deobf("curse.maven:gt-community-additions-1101718:6861266")
+    implementation fg.deobf("curse.maven:gt-985872:6917388")
+
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:2001.6.5-build.14")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:2001.2.3-build.6")
     // ae2
-    implementation fg.deobf("appeng:appliedenergistics2-forge:${ae2_version}")
+    implementation fg.deobf("appeng:appliedenergistics2-forge:15.0.18")
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -206,4 +213,14 @@ tasks.withType(JavaCompile).configureEach {
     // If Javadoc is generated, this must be specified in that task too.
     options.encoding = "UTF-8"
     options.release.set(17)
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE // 或 EXCLUDE, WARN 等
 }

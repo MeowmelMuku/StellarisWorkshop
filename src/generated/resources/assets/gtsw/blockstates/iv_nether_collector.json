@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gtsw:block/machine/iv_nether_collector",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gtsw:block/machine/iv_nether_collector"
+    },
+    "facing=south": {
+      "model": "gtsw:block/machine/iv_nether_collector",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gtsw:block/machine/iv_nether_collector",
+      "y": 270
+    }
+  }
+}

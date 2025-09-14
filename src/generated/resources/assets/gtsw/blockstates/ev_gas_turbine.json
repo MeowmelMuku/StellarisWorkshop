@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gtsw:block/machine/ev_gas_turbine",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "gtsw:block/machine/ev_gas_turbine",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gtsw:block/machine/ev_gas_turbine"
+    },
+    "facing=south": {
+      "model": "gtsw:block/machine/ev_gas_turbine",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "gtsw:block/machine/ev_gas_turbine",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "gtsw:block/machine/ev_gas_turbine",
+      "y": 270
+    }
+  }
+}
