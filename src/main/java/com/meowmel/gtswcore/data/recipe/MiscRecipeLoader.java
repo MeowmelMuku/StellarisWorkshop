@@ -11,14 +11,12 @@ import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-
+import com.meowmel.gtswcore.common.data.GTSWMachines;
+import com.meowmel.gtswcore.common.data.GTSWMultiMachines;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-
-import com.meowmel.gtswcore.common.data.GTSWMachines;
-import com.meowmel.gtswcore.common.data.GTSWMultiMachines;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
@@ -31,7 +29,6 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_INDUSTRIAL_STE
 import static com.gregtechceu.gtceu.common.data.GTBlocks.RUBBER_LOG;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.RUBBER_SAPLING;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTItems.NAQUADAH_WAFER;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
@@ -157,7 +154,8 @@ public class MiscRecipeLoader {
         registerMachineRecipe(provider, HARVESTER, "HCH", "PMP", "HCH", 'M', HULL, 'P', PUMP, 'C', CIRCUIT, 'H', CABLE);
         registerMachineRecipe(provider, MOB_SIMULATOR, "CEC", "SMS", "CEC", 'M', HULL, 'E', EMITTER, 'C',
                 CIRCUIT, 'S', SENSOR);
-
+        registerMachineRecipe(provider, SIEVE, "CEC", "SMS", "CEC", 'M', HULL, 'E', MOTOR, 'C',
+                CIRCUIT, 'S', PISTON);
         VanillaRecipeHelper.addShapedRecipe(provider, true, "processing_array",
                 GTSWMultiMachines.PROCESSING_ARRAY[GTValues.IV].asStack(), "COC", "RHR", "CPC", 'C',
 

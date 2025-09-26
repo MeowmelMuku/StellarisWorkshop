@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gtsw:block/machine/uxv_sieve",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gtsw:block/machine/uxv_sieve"
+    },
+    "facing=south": {
+      "model": "gtsw:block/machine/uxv_sieve",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gtsw:block/machine/uxv_sieve",
+      "y": 270
+    }
+  }
+}

@@ -42,6 +42,12 @@ public class GTSWRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
 
+    //筛子
+    public static final GTRecipeType SIEVE_RECIPES = GTRecipeTypes.register("sieve", MULTIBLOCK)
+            .setMaxIOSize(3, 16, 0, 0).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.SCIENCE);
+
     public final static GTRecipeType LARGE_GAS_COLLECTOR_RECIPES = GTRecipeTypes
             .register("large_gas_collector", ELECTRIC)
             .setMaxIOSize(1, 0, 0, 1).setEUIO(IO.IN)

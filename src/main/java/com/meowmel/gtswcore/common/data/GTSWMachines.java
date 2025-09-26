@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
 
+import com.meowmel.gtswcore.common.machine.electric.SieveMachine;
 import net.minecraft.network.chat.Component;
 
 import com.meowmel.gtswcore.GTSWCore;
@@ -75,6 +76,20 @@ public class GTSWMachines {
                     .register(),
             ALL_TIERS);
 
+    //电动筛子
+    public static final MachineDefinition[] SIEVE = registerTieredMachines("sieve",
+            SieveMachine::new,
+            (tier, builder) -> builder
+                    .langValue("%s Sieve".formatted(GTValues.VNF[tier]))
+                    .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTSWCore.id("sieve"),
+                            GTSWRecipeTypes.SIEVE_RECIPES))
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .workableTieredHullModel(GTSWCore.id("block/machines/sieve"))
+                    .recipeModifiers(ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+                    .recipeType(GTSWRecipeTypes.SIEVE_RECIPES)
+                    .register(),
+            ALL_TIERS);
+
     // generator
     public static final MachineDefinition[] COMBUSTION = registerSimpleGenerator("combustion",
             GTRecipeTypes.COMBUSTION_GENERATOR_FUELS, largeTankSizeFunction, 0.1f, GTValues.EV, GTValues.IV);
@@ -111,8 +126,7 @@ public class GTSWMachines {
                                                              BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,
                                                              int... tiers) {
         MachineDefinition[] definitions = new MachineDefinition[GTValues.TIER_COUNT];
-        for (int i = 0; i < tiers.length; i++) {
-            int tier = tiers[i];
+        for (int tier : tiers) {
             var register = REGISTRATE
                     .machine(GTValues.VN[tier].toLowerCase() + "_" + name, holder -> factory.apply(holder, tier))
                     .tier(tier);
