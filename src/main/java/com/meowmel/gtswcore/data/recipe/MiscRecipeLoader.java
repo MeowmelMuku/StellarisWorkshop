@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -34,6 +35,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.BLAST_ALLOY_SMELTER;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.*;
+import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.HULL;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PISTON;
@@ -82,7 +84,7 @@ public class MiscRecipeLoader {
 
         VanillaRecipeHelper.addShapedRecipe(provider, "sw_solar_panel_ev", COVER_SOLAR_PANEL_EV.asStack(), "WGW", "CAC",
                 "SPS", 'W', PHOSPHORUS_WAFER.asStack(), 'G', GTBlocks.CASING_LAMINATED_GLASS.asStack(), 'C',
-                CustomTags.IV_CIRCUITS, 'P', new MaterialEntry(plateDouble, GalliumArsenide), 'A',
+                IV_CIRCUITS, 'P', new MaterialEntry(plateDouble, GalliumArsenide), 'A',
                 new MaterialEntry(wireGtDouble, UraniumTriplatinum), 'S', COVER_SOLAR_PANEL_HV.asStack());
 
         VanillaRecipeHelper.addShapedRecipe(provider, "sw_solar_panel_iv", COVER_SOLAR_PANEL_IV.asStack(), "WGW", "CAC",
@@ -93,7 +95,7 @@ public class MiscRecipeLoader {
         VanillaRecipeHelper.addShapedRecipe(provider, "sw_solar_panel_luv", COVER_SOLAR_PANEL_LuV.asStack(), "WGW",
                 "CAC",
                 "SPS", 'W', NAQUADAH_WAFER.asStack(), 'G', GTBlocks.FUSION_GLASS.asStack(), 'C',
-                CustomTags.ZPM_CIRCUITS, 'P', new MaterialEntry(plate, IndiumGalliumPhosphide), 'A',
+                ZPM_CIRCUITS, 'P', new MaterialEntry(plate, IndiumGalliumPhosphide), 'A',
                 new MaterialEntry(wireGtDouble, IndiumTinBariumTitaniumCuprate), 'S', COVER_SOLAR_PANEL_IV.asStack());
 
         VanillaRecipeHelper.addShapedRecipe(provider, "sw_solar_panel_zpm", COVER_SOLAR_PANEL_ZPM.asStack(), "WGW",
@@ -113,7 +115,7 @@ public class MiscRecipeLoader {
         // large gas collector
         VanillaRecipeHelper.addShapedRecipe(provider, true, "large_gas_collector",
                 LARGE_GAS_COLLECTOR.asStack(), "PCP", "FGF", "PCP", 'C',
-                CustomTags.ZPM_CIRCUITS, 'P', ELECTRIC_PUMP_LuV.asStack(), 'F',
+                ZPM_CIRCUITS, 'P', ELECTRIC_PUMP_LuV.asStack(), 'F',
                 GTItems.FLUID_FILTER, 'G', GAS_COLLECTOR[LuV].asStack());
 
         LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder("air")
@@ -149,21 +151,39 @@ public class MiscRecipeLoader {
 
     static void createCustomRecipes(Consumer<FinishedRecipe> provider) {
         registerMachineRecipe(provider, GTSWMachines.NETHER_COLLECTOR, "WFW", "PMP", "CFC", 'M', HULL, 'P', PISTON, 'F',
-
                 GTItems.ITEM_FILTER, 'C', CIRCUIT, 'W', CABLE_DOUBLE);
+
         registerMachineRecipe(provider, HARVESTER, "HCH", "PMP", "HCH", 'M', HULL, 'P', PUMP, 'C', CIRCUIT, 'H', CABLE);
+
         registerMachineRecipe(provider, MOB_SIMULATOR, "CEC", "SMS", "CEC", 'M', HULL, 'E', EMITTER, 'C',
                 CIRCUIT, 'S', SENSOR);
+
         registerMachineRecipe(provider, SIEVE, "CEC", "SMS", "CEC", 'M', HULL, 'E', MOTOR, 'C',
                 CIRCUIT, 'S', PISTON);
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_sieve_bronze",
+                STEAM_SIEVE.left().asStack(), "XXX", "PMG", "XXX", 'M', GTBlocks.BRONZE_HULL.asStack(),
+                'X', new MaterialEntry(TagPrefix.gear, GTMaterials.Bronze), 'P', CustomTags.PISTONS,
+                'G', new ItemStack(Blocks.GLASS));
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_sieve_steel",
+                STEAM_SIEVE.right().asStack(), "PSP", "WMW", "PPP", 'M',
+                STEAM_SIEVE.left().asStack(), 'P',
+                new MaterialEntry(TagPrefix.gear, Nickel), 'S',
+                new MaterialEntry(TagPrefix.plate, GTMaterials.Steel), 'W',
+                new MaterialEntry(TagPrefix.plate, Copper));
+
+
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "processing_array",
                 GTSWMultiMachines.PROCESSING_ARRAY[GTValues.IV].asStack(), "COC", "RHR", "CPC", 'C',
-
-                CustomTags.IV_CIRCUITS, 'O', GTItems.TOOL_DATA_ORB.asStack(), 'R', GTItems.ROBOT_ARM_EV.asStack(), 'P',
+                IV_CIRCUITS, 'O', GTItems.TOOL_DATA_ORB.asStack(), 'R', GTItems.ROBOT_ARM_EV.asStack(), 'P',
                 new MaterialEntry(pipeLargeFluid, StainlessSteel), 'H', GTMachines.HULL[GTValues.EV].asStack());
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "advanced_processing_array",
                 GTSWMultiMachines.PROCESSING_ARRAY[GTValues.LuV].asStack(), "RCR", "SPE", "HNH", 'R',
-                GTItems.ROBOT_ARM_LuV.asStack(), 'C', CustomTags.ZPM_CIRCUITS, 'S', GTItems.SENSOR_LuV, 'P',
+                GTItems.ROBOT_ARM_LuV.asStack(), 'C', ZPM_CIRCUITS, 'S', GTItems.SENSOR_LuV, 'P',
                 GTSWMultiMachines.PROCESSING_ARRAY[IV].asStack(), 'E', GTItems.EMITTER_LuV.asStack(), 'H',
                 new MaterialEntry(plate, GTMaterials.HSSE), 'N',
                 new MaterialEntry(pipeLargeFluid, GTMaterials.Naquadah));
@@ -262,17 +282,19 @@ public class MiscRecipeLoader {
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_centrifuge",
                 GTSWMultiMachines.STEAM_CENTRIFUGE.asStack(),
-                "CGC",
-                "FMF", "CGC", 'F', new MaterialEntry(rotor, Bronze), 'C', GTBlocks.CASING_STEEL_SOLID.asStack(),
-                'M', CASING_INDUSTRIAL_STEAM.asStack(), 'G',
-                new MaterialEntry(gear, Invar));
+                "CGC", "FMF", "CGC",
+                'F', new MaterialEntry(rotor, Bronze),
+                'C', GTBlocks.CASING_STEEL_SOLID.asStack(),
+                'M', CASING_INDUSTRIAL_STEAM.asStack(),
+                'G', new MaterialEntry(gear, Invar));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_ore_washer",
                 GTSWMultiMachines.STEAM_ORE_WASHER.asStack(),
-                "CGC",
-                "FMF", "CGC", 'F', new MaterialEntry(rotor, Steel), 'C', GTBlocks.CASING_STEEL_SOLID.asStack(),
-                'M', CASING_INDUSTRIAL_STEAM.asStack(), 'G',
-                new MaterialEntry(pipeLargeFluid, Potin));
+                "CGC", "FMF", "CGC",
+                'F', new MaterialEntry(rotor, Steel),
+                'C', GTBlocks.CASING_STEEL_SOLID.asStack(),
+                'M', CASING_INDUSTRIAL_STEAM.asStack(),
+                'G', new MaterialEntry(pipeLargeFluid, Potin));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_mixer", GTSWMultiMachines.STEAM_MIXER.asStack(),
                 "CGC",
@@ -287,12 +309,12 @@ public class MiscRecipeLoader {
                 'M', CASING_INDUSTRIAL_STEAM.asStack(), 'G',
                 new MaterialEntry(gear, Steel));
 
-        COMPRESSOR_RECIPES.recipeBuilder("large_steam_hatch")
-                .EUt(VA[LV])
-                .duration(20 * 10)
-                .inputItems(STEAM_HATCH.asStack(16))
-                .outputItems(GTSWMultiMachines.LARGE_STEAM_HATCH)
-                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "large_steam_hatch",
+                GTSWMultiMachines.LARGE_STEAM_HATCH.asStack(),
+                "BPB", "BTB", "BPB",
+                'B', new MaterialEntry(TagPrefix.plate, GTMaterials.Steel),
+                'P', new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.Steel),
+                'T', GTMachines.STEAM_HATCH.asStack());
 
         COMPRESSOR_RECIPES.recipeBuilder("steam_void_miner")
                 .EUt(VA[LV])
@@ -500,47 +522,77 @@ public class MiscRecipeLoader {
     }
 
     static void createMultiblockRecipes(Consumer<FinishedRecipe> provider) {
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "tree_farm",
-                GTSWMultiMachines.TREE_FARM.asStack(), "PCP", "SAS", "PCP", 'S',
-                new MaterialEntry(TagPrefix.rotor, GTMaterials.Steel), 'P', CustomTags.LV_CIRCUITS, 'A',
-                GTMachines.HULL[GTValues.MV].asStack(), 'C', GTItems.ELECTRIC_PUMP_LV.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "tree_farm", GTSWMultiMachines.TREE_FARM.asStack(),
+                "PCP", "SAS", "PCP",
+                'S', new MaterialEntry(TagPrefix.rotor, GTMaterials.Steel),
+                'P', LV_CIRCUITS,
+                'A', GTMachines.HULL[GTValues.MV].asStack(),
+                'C', GTItems.ELECTRIC_PUMP_LV.asStack());
 
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "personal_beacon",
-                PERSONAL_BEACON.asStack(), "PCP", "SAS", "PCP", 'S',
-                ENDER_PEARL, 'P', CustomTags.LV_CIRCUITS, 'A',
-                GTMachines.HULL[GTValues.LV].asStack(), 'C', FIELD_GENERATOR_LV.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "personal_beacon", PERSONAL_BEACON.asStack(),
+                "PCP", "SAS", "PCP",
+                'S', ENDER_PEARL,
+                'P', LV_CIRCUITS,
+                'A', GTMachines.HULL[GTValues.LV].asStack(),
+                'C', FIELD_GENERATOR_LV.asStack());
 
-        ASSEMBLER_RECIPES.recipeBuilder("macro_blast_furnace")
-                .duration(20 * 100).EUt(VA[LV])
-                .circuitMeta(16)
-                .inputItems(ELECTRIC_BLAST_FURNACE.asStack(64))
-                .outputItems(GTSWMultiMachines.MACRO_BLAST_FURNACE.asStack())
-                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "macro_blast_furnace", MACRO_BLAST_FURNACE.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', IV_CIRCUITS,
+                'S', GTMultiMachines.ELECTRIC_BLAST_FURNACE.asStack(),
+                'F', FIELD_GENERATOR_EV.asStack(),
+                'P', new MaterialEntry(rod, TungstenSteel),
+                'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
+                'W', new MaterialEntry(wireGtQuadruple, Platinum));
 
-        ASSEMBLER_RECIPES.recipeBuilder("industrial_pyrolyse_oven")
-                .duration(20 * 100).EUt(VA[EV])
-                .circuitMeta(16)
-                .inputItems(PYROLYSE_OVEN.asStack(), 16)
-                .outputItems(GTSWMultiMachines.INDUSTRIAL_PYROLYSE_OVEN.asStack())
-                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_pyrolyse_oven", INDUSTRIAL_PYROLYSE_OVEN.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', IV_CIRCUITS,
+                'S', GTMultiMachines.PYROLYSE_OVEN.asStack(),
+                'F', FIELD_GENERATOR_EV.asStack(),
+                'P', new MaterialEntry(rod, TungstenSteel),
+                'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
+                'W', new MaterialEntry(wireGtQuadruple, Platinum));
 
-        ASSEMBLER_RECIPES.recipeBuilder("industrial_alloy_blast_smelter")
-                .duration(20 * 100).EUt(VA[LuV])
-                .circuitMeta(16)
-                .inputItems(BLAST_ALLOY_SMELTER.asStack(), 16)
-                .outputItems(GTSWMultiMachines.INDUSTRIAL_BLAST_ALLOY_SMELTER.asStack())
-                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_alloy_blast_smelter", INDUSTRIAL_BLAST_ALLOY_SMELTER.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', IV_CIRCUITS,
+                'S', BLAST_ALLOY_SMELTER.asStack(),
+                'F', FIELD_GENERATOR_EV.asStack(),
+                'P', new MaterialEntry(rod, TungstenSteel),
+                'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
+                'W', new MaterialEntry(wireGtQuadruple, Platinum));
 
-        ASSEMBLER_RECIPES.recipeBuilder("industrial_cracker")
-                .duration(20 * 100).EUt(VA[IV])
-                .circuitMeta(16)
-                .inputItems(CRACKER.asStack(), 16)
-                .outputItems(INDUSTRIAL_CRACKER.asStack())
-                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "large_sieve", LARGE_SIEVE.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', HV_CIRCUITS,
+                'S', SIEVE[3].asStack(),
+                'F', ELECTRIC_PISTON_HV.asStack(),
+                'P', new MaterialEntry(rod, StainlessSteel),
+                'D', new MaterialEntry(plateDense, Aluminium),
+                'W', new MaterialEntry(wireGtQuadruple, Gold));
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industry_chemical_reactor", INDUSTRY_CHEMICAL_REACTOR.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', HV_CIRCUITS,
+                'S', CHEMICAL_REACTOR[3].asStack(),
+                'F', ELECTRIC_PUMP_HV.asStack(),
+                'P', new MaterialEntry(rod, StainlessSteel),
+                'D', new MaterialEntry(plateDense, Aluminium),
+                'W', new MaterialEntry(wireGtQuadruple, Gold));
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_cracker", INDUSTRIAL_CRACKER.asStack(),
+                "PCP", "FSF", "DWD",
+                'C', IV_CIRCUITS,
+                'S', CRACKER.asStack(),
+                'F', ELECTRIC_PUMP_EV.asStack(),
+                'P', new MaterialEntry(rod, TungstenSteel),
+                'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
+                'W', new MaterialEntry(wireGtQuadruple, Platinum));
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_fusion_reactor_mk1")
                 .inputItems(FUSION_REACTOR[LuV].asStack())
-                .inputItems(CustomTags.ZPM_CIRCUITS, 32)
+                .inputItems(ZPM_CIRCUITS, 32)
                 .inputItems(plateDouble, Plutonium241)
                 .inputItems(plateDouble, Osmiridium)
                 .inputItems(FIELD_GENERATOR_IV, 16)
@@ -599,7 +651,7 @@ public class MiscRecipeLoader {
                 new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Aluminium));
         VanillaRecipeHelper.addShapedRecipe(provider, true, "gas_turbine_iv", GTSWMachines.GAS_TURBINE[IV].asStack(),
                 "CRC", "RMR", "EWE", 'M', GTMachines.HULL[GTValues.IV].asStack(), 'E', GTItems.ELECTRIC_MOTOR_IV, 'R',
-                new MaterialEntry(TagPrefix.rotor, GTMaterials.TungstenSteel), 'C', CustomTags.IV_CIRCUITS, 'W',
+                new MaterialEntry(TagPrefix.rotor, GTMaterials.TungstenSteel), 'C', IV_CIRCUITS, 'W',
                 new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Tungsten));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "diesel_generator_ev",
@@ -611,7 +663,7 @@ public class MiscRecipeLoader {
         VanillaRecipeHelper.addShapedRecipe(provider, true, "diesel_generator_iv",
                 GTSWMachines.COMBUSTION[IV].asStack(),
                 "PCP", "EME", "GWG", 'M', GTMachines.HULL[GTValues.IV].asStack(), 'P', GTItems.ELECTRIC_PISTON_IV, 'E',
-                GTItems.ELECTRIC_MOTOR_IV, 'C', CustomTags.IV_CIRCUITS, 'W',
+                GTItems.ELECTRIC_MOTOR_IV, 'C', IV_CIRCUITS, 'W',
                 new MaterialEntry(TagPrefix.cableGtSingle, GTMaterials.Tungsten), 'G',
                 new MaterialEntry(TagPrefix.gear, GTMaterials.TungstenSteel));
 
@@ -623,7 +675,7 @@ public class MiscRecipeLoader {
                 new MaterialEntry(TagPrefix.pipeSmallFluid, GTMaterials.NiobiumTitanium));
         VanillaRecipeHelper.addShapedRecipe(provider, true, "plasma_turbine_zpm",
                 GTSWMachines.PLASMA_TURBINE[ZPM].asStack(), "PSP", "SAS", "CSC", 'S',
-                new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
+                new MaterialEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'P', ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.Polybenzimidazole));
 
@@ -643,13 +695,13 @@ public class MiscRecipeLoader {
                 LARGE_GAS_TURBINE.asStack());
         VanillaRecipeHelper.addShapedRecipe(provider, true, "large_advanced_plasma_turbine",
                 LARGE_ADVANCED_PLASMA_TURBINE.asStack(), " V ", "CMC", " V ", 'V',
-                CONVEYOR.get(IV), 'C', CustomTags.IV_CIRCUITS, 'M',
+                CONVEYOR.get(IV), 'C', IV_CIRCUITS, 'M',
                 LARGE_PLASMA_TURBINE.asStack());
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "large_combustion_st",
                 LARGE_COMBUSTION_SET.asStack(), "PCP", "EME", "GWG", 'M',
                 EXTREME_COMBUSTION_ENGINE.asStack(), 'P', GTItems.EMITTER_LuV.asStack(), 'E',
-                GTItems.ELECTRIC_MOTOR_LuV.asStack(), 'C', CustomTags.ZPM_CIRCUITS, 'W',
+                GTItems.ELECTRIC_MOTOR_LuV.asStack(), 'C', ZPM_CIRCUITS, 'W',
                 new MaterialEntry(TagPrefix.cableGtSingle, NiobiumTitanium), 'G',
                 GTItems.SENSOR_LuV.asStack());
     }

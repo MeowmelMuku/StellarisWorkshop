@@ -34,6 +34,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamHatchPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
@@ -73,12 +74,14 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.ALLOY_BLAST_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.ELECTRIC_OVERCLOCK;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CHEMICAL_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.meowmel.gtswcore.api.machine.multiblock.HullWorkableElectricMultiblockMachine.MACHINE_CASING_ALL;
 import static com.meowmel.gtswcore.api.recipe.OverclockingLogic.PERFECT_OVERCLOCK_SUBSECOND;
 import static com.meowmel.gtswcore.api.registries.GTSWRegistires.REGISTRATE;
+import static com.meowmel.gtswcore.common.data.GTSWRecipeTypes.SIEVE_RECIPES;
 import static com.meowmel.gtswcore.common.machine.multiblock.generator.LargeAdvancedTurbineMachine.registerAdvancedLargeTurbine;
 import static net.minecraft.world.level.block.Blocks.*;
 
@@ -239,6 +242,7 @@ public class GTSWMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     GTCEu.id("block/multiblock/bedrock_ore_miner"))
             .register();
+
     public static final MultiblockMachineDefinition TREE_FARM = REGISTRATE.multiblock("tree_farm", TreeFarmMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTSWRecipeTypes.TREE_FARM_RECIPES)
@@ -257,6 +261,7 @@ public class GTSWMultiMachines {
                     GTCEu.id("block/multiblock/implosion_compressor"))
             .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
             .register();
+
     public static final MultiblockMachineDefinition INDUSTRIAL_PYROLYSE_OVEN = REGISTRATE
             .multiblock("industrial_pyrolyse_oven", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
@@ -310,6 +315,7 @@ public class GTSWMultiMachines {
                 }
             })
             .register();
+
     public final static MultiblockMachineDefinition INDUSTRIAL_BLAST_ALLOY_SMELTER = REGISTRATE
             .multiblock("industrial_alloy_blast_smelter", CoilWorkableElectricMultiblockMachine::new)
             .langValue("Industrial Alloy Blast Smelter")
@@ -376,6 +382,68 @@ public class GTSWMultiMachines {
                 }
             })
             .register();
+
+    //大型筛子
+    public final static MultiblockMachineDefinition LARGE_SIEVE = REGISTRATE
+            .multiblock("large_sieve", WorkableElectricMultiblockMachine::new)
+            .langValue("Large Sieve")
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
+            .rotationState(RotationState.ALL)
+            .recipeType(SIEVE_RECIPES)
+            .recipeModifiers(ELECTRIC_OVERCLOCK.apply(PERFECT_OVERCLOCK_SUBSECOND))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT_SUBTICK, BATCH_MODE)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#X#X#", "#X#X#", "#XXX#", "XXXXX", "#XXX#")
+                    .aisle("XXXXX", "XAXAX", "XKKKX", "XKKKX", "X###X")
+                    .aisle("#XXX#", "#XAX#", "XKKKX", "XKKKX", "X###X")
+                    .aisle("XXXXX", "XAXAX", "XKKKX", "XKKKX", "X###X")
+                    .aisle("#X#X#", "#X#X#", "#XSX#", "XXXXX", "#XXX#")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(50)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, false, true)))
+                    .where('K', blocks(CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where('A', Predicates.air())
+                    .where('#', Predicates.any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    GTSWCore.id("block/multiblock/large_sieve")
+            )
+            .register();
+
+    //工业化学反应
+    public final static MultiblockMachineDefinition INDUSTRY_CHEMICAL_REACTOR = REGISTRATE
+            .multiblock("industry_chemical_reactor", WorkableElectricMultiblockMachine::new)
+            .langValue("Industry Chemical Reactor")
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
+            .rotationState(RotationState.ALL)
+            .recipeType(CHEMICAL_RECIPES)
+            .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT, GTRecipeModifiers.PARALLEL_HATCH,OC_PERFECT_SUBTICK, BATCH_MODE)
+            .appearanceBlock(CASING_PTFE_INERT)
+            .pattern(definition -> {
+                var casing = blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(40);
+                var abilities = Predicates.autoAbilities(definition.getRecipeTypes())
+                        .or(Predicates.autoAbilities(true, true, true));
+                return FactoryBlockPattern.start()
+                        .aisle("X###X", "XXXXX", "X###X", "XXXXX", "X###X")
+                        .aisle("XXXXX", "XPPPX", "XCCCX", "XPPPX", "XXXXX")
+                        .aisle("XXXXX", "XPPPX", "XCPCX", "XPPPX", "XXXXX")
+                        .aisle("XXXXX", "XPPPX", "XCCCX", "XPPPX", "XXXXX")
+                        .aisle("X###X", "SXXXX", "X###X", "XXXXX", "X###X")
+                        .where('S', Predicates.controller(blocks(definition.getBlock())))
+                        .where('X', casing.or(abilities))
+                        .where('P', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                        .where('C', Predicates.heatingCoils())
+                        .where('#', Predicates.any())
+                        .build();
+            })
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
+                    GTSWCore.id("block/multiblock/industry_chemical_reactor"))
+            .register();
+
     public static final MultiblockMachineDefinition MACRO_BLAST_FURNACE = REGISTRATE
             .multiblock("macro_blast_furnace", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)

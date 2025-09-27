@@ -44,7 +44,7 @@ public class GTSWRecipeTypes {
 
     //筛子
     public static final GTRecipeType SIEVE_RECIPES = GTRecipeTypes.register("sieve", MULTIBLOCK)
-            .setMaxIOSize(3, 16, 0, 0).setEUIO(IO.IN)
+            .setMaxIOSize(3, 9, 0, 0).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
 

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gtsw:block/machine/lp_steam_sieve",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "gtsw:block/machine/lp_steam_sieve",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gtsw:block/machine/lp_steam_sieve"
+    },
+    "facing=south": {
+      "model": "gtsw:block/machine/lp_steam_sieve",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "gtsw:block/machine/lp_steam_sieve",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "gtsw:block/machine/lp_steam_sieve",
+      "y": 270
+    }
+  }
+}

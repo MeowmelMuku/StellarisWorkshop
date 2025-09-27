@@ -95,7 +95,7 @@ public class SieveRecipeLoader {
         int booster = 1;
         for (ItemEntry<ComponentItem> wrap : sieveItems) {
             booster++;
-            GTRecipeBuilder recipes = SIEVE_RECIPES.recipeBuilder(input.getItem() + "_sieve_to_" + materials[0].getName());
+            GTRecipeBuilder recipes = SIEVE_RECIPES.recipeBuilder(input.getItem() + "_sieve_to_" + materials[0].getName()+"_"+wrap.asStack().getItem());
             recipes.EUt(VA[tier])
                     .circuitMeta(circuit)
                     .inputItems(input)

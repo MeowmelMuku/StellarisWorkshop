@@ -7,12 +7,17 @@ import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.*;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
+import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
 
 import com.meowmel.gtswcore.common.machine.electric.SieveMachine;
+import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.network.chat.Component;
 
 import com.meowmel.gtswcore.GTSWCore;
@@ -36,7 +41,6 @@ public class GTSWMachines {
 
     public static final int[] NETHER_COLLECTOR_TIERS = GTValues.tiersBetween(GTValues.EV,
             GTCEuAPI.isHighTier() ? GTValues.MAX : GTValues.UHV);
-    public static final int[] HARVESTER_TIERS = GTValues.tiersBetween(GTValues.LV, GTValues.IV);
     public final static MachineDefinition[] NETHER_COLLECTOR = registerTieredMachines("nether_collector",
             NetherCollectorMachine::new,
             (tier, builder) -> builder
@@ -51,6 +55,7 @@ public class GTSWMachines {
                     .register(),
             NETHER_COLLECTOR_TIERS);
 
+    public static final int[] HARVESTER_TIERS = GTValues.tiersBetween(GTValues.LV, GTValues.IV);
     public final static MachineDefinition[] HARVESTER = registerTieredMachines("harvester", HarvesterMachine::new,
             (tier, builder) -> builder
                     .langValue("%s Harvester".formatted(GTValues.VNF[tier]))
@@ -76,7 +81,12 @@ public class GTSWMachines {
                     .register(),
             ALL_TIERS);
 
-    //电动筛子
+    //蒸汽筛子
+
+    public static final Pair<MachineDefinition, MachineDefinition> STEAM_SIEVE = registerSimpleSteamMachines(
+            "sieve", GTSWRecipeTypes.SIEVE_RECIPES);
+
+    //electricSieve
     public static final MachineDefinition[] SIEVE = registerTieredMachines("sieve",
             SieveMachine::new,
             (tier, builder) -> builder
@@ -89,6 +99,10 @@ public class GTSWMachines {
                     .recipeType(GTSWRecipeTypes.SIEVE_RECIPES)
                     .register(),
             ALL_TIERS);
+
+
+
+    //
 
     // generator
     public static final MachineDefinition[] COMBUSTION = registerSimpleGenerator("combustion",
@@ -133,6 +147,17 @@ public class GTSWMachines {
             definitions[tier] = builder.apply(tier, register);
         }
         return definitions;
+    }
+    public static Pair<MachineDefinition, MachineDefinition> registerSimpleSteamMachines(String name,
+                                                                                         GTRecipeType recipeType) {
+        return registerSteamMachines(REGISTRATE, "steam_" + name, SimpleSteamMachine::new,
+                (pressure, builder) -> builder
+                        .rotationState(RotationState.ALL)
+                        .recipeType(recipeType)
+                        .recipeModifier(SimpleSteamMachine::recipeModifier)
+                        .modelProperty(GTMachineModelProperties.VENT_DIRECTION, RelativeDirection.BACK)
+                        .workableSteamHullModel(pressure, GTSWCore.id("block/machines/" + name))
+                        .register());
     }
 
     public static void init() {}
