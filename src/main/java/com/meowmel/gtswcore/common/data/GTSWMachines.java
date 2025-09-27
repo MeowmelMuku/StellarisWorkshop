@@ -12,18 +12,17 @@ import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
 
-import com.meowmel.gtswcore.common.machine.electric.SieveMachine;
-import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.network.chat.Component;
 
 import com.meowmel.gtswcore.GTSWCore;
 import com.meowmel.gtswcore.common.machine.electric.HarvesterMachine;
 import com.meowmel.gtswcore.common.machine.electric.MobSimulatorMachine;
 import com.meowmel.gtswcore.common.machine.electric.NetherCollectorMachine;
+import com.meowmel.gtswcore.common.machine.electric.SieveMachine;
+import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 
 import java.util.function.BiFunction;
@@ -81,12 +80,12 @@ public class GTSWMachines {
                     .register(),
             ALL_TIERS);
 
-    //蒸汽筛子
+    // 蒸汽筛子
 
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_SIEVE = registerSimpleSteamMachines(
             "sieve", GTSWRecipeTypes.SIEVE_RECIPES);
 
-    //electricSieve
+    // electricSieve
     public static final MachineDefinition[] SIEVE = registerTieredMachines("sieve",
             SieveMachine::new,
             (tier, builder) -> builder
@@ -99,8 +98,6 @@ public class GTSWMachines {
                     .recipeType(GTSWRecipeTypes.SIEVE_RECIPES)
                     .register(),
             ALL_TIERS);
-
-
 
     //
 
@@ -148,6 +145,7 @@ public class GTSWMachines {
         }
         return definitions;
     }
+
     public static Pair<MachineDefinition, MachineDefinition> registerSimpleSteamMachines(String name,
                                                                                          GTRecipeType recipeType) {
         return registerSteamMachines(REGISTRATE, "steam_" + name, SimpleSteamMachine::new,

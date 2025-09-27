@@ -7,17 +7,20 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-import com.meowmel.gtswcore.common.data.GTSWMachines;
-import com.meowmel.gtswcore.common.data.GTSWMultiMachines;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+
+import com.meowmel.gtswcore.common.data.GTSWMachines;
+import com.meowmel.gtswcore.common.data.GTSWMultiMachines;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
@@ -41,6 +44,7 @@ import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.HULL;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PISTON;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PUMP;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
+import static com.meowmel.gtswcore.common.data.GTSWItems.*;
 import static com.meowmel.gtswcore.common.data.GTSWMachines.*;
 import static com.meowmel.gtswcore.common.data.GTSWMultiMachines.*;
 import static com.meowmel.gtswcore.common.data.GTSWRecipeTypes.*;
@@ -59,10 +63,52 @@ public class MiscRecipeLoader {
         createLargeFisherRecipe(provider);
         createLargeGasCollectorRecipe(provider);
         createSolarPanelRecipe(provider);
+        createRockBreakerRecipe(provider);
+        // 筛网配方注册
+        createSieveWrapRecipes(provider);
 
         if (GTCEu.Mods.isAE2Loaded()) {
             createAE2Recipes(provider);
         }
+    }
+
+    private static void createSieveWrapRecipes(Consumer<FinishedRecipe> provider) {
+        VanillaRecipeHelper.addShapedRecipe(provider, "steel_sieve_net", STEEL_SIEVE_NET.asStack(),
+                "WWW", "WSW", "WWW",
+                'W', new MaterialEntry(rod, Steel),
+                'S', ITEM_FILTER.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, "aluminium_sieve_net", ALUMINIUM_SIEVE_NET.asStack(),
+                "WWW", "WSW", "WWW",
+                'W', new MaterialEntry(rod, Aluminium),
+                'S', ITEM_FILTER.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, "stainless_steel_sieve_net", STAINLESS_STEEL_SIEVE_NET.asStack(),
+                "WWW", "WSW", "WWW",
+                'W', new MaterialEntry(rod, StainlessSteel),
+                'S', ITEM_FILTER.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, "titanium_sieve_net", TITANIUM_SIEVE_NET.asStack(),
+                "WWW", "WSW", "WWW",
+                'W', new MaterialEntry(rod, Titanium),
+                'S', ITEM_FILTER.asStack());
+        VanillaRecipeHelper.addShapedRecipe(provider, "tungsten_steel_sieve_net", TUNGSTEN_STEEL_SIEVE_NET.asStack(),
+                "WWW", "WSW", "WWW",
+                'W', new MaterialEntry(rod, TungstenSteel),
+                'S', ITEM_FILTER.asStack());
+    }
+
+    private static void createRockBreakerRecipe(Consumer<FinishedRecipe> provider) {
+        ROCK_BREAKER_RECIPES.recipeBuilder("netherrack")
+                .notConsumable(Blocks.NETHERRACK.asItem())
+                .outputItems(Blocks.NETHERRACK.asItem())
+                .duration(16)
+                .EUt(VHA[LV])
+                .save(provider);
+
+        ROCK_BREAKER_RECIPES.recipeBuilder("end_stone")
+                .notConsumable(Blocks.END_STONE.asItem())
+                .outputItems(Blocks.END_STONE.asItem())
+                .duration(16)
+                .EUt(VHA[HV])
+                .save(provider);
     }
 
     private static void createSolarPanelRecipe(Consumer<FinishedRecipe> provider) {
@@ -161,7 +207,6 @@ public class MiscRecipeLoader {
         registerMachineRecipe(provider, SIEVE, "CEC", "SMS", "CEC", 'M', HULL, 'E', MOTOR, 'C',
                 CIRCUIT, 'S', PISTON);
 
-
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_sieve_bronze",
                 STEAM_SIEVE.left().asStack(), "XXX", "PMG", "XXX", 'M', GTBlocks.BRONZE_HULL.asStack(),
                 'X', new MaterialEntry(TagPrefix.gear, GTMaterials.Bronze), 'P', CustomTags.PISTONS,
@@ -173,8 +218,6 @@ public class MiscRecipeLoader {
                 new MaterialEntry(TagPrefix.gear, Nickel), 'S',
                 new MaterialEntry(TagPrefix.plate, GTMaterials.Steel), 'W',
                 new MaterialEntry(TagPrefix.plate, Copper));
-
-
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "processing_array",
                 GTSWMultiMachines.PROCESSING_ARRAY[GTValues.IV].asStack(), "COC", "RHR", "CPC", 'C',
@@ -536,16 +579,26 @@ public class MiscRecipeLoader {
                 'A', GTMachines.HULL[GTValues.LV].asStack(),
                 'C', FIELD_GENERATOR_LV.asStack());
 
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "macro_blast_furnace", MACRO_BLAST_FURNACE.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "mega_blast_furnace", MACRO_BLAST_FURNACE.asStack(),
                 "PCP", "FSF", "DWD",
-                'C', IV_CIRCUITS,
-                'S', GTMultiMachines.ELECTRIC_BLAST_FURNACE.asStack(),
-                'F', FIELD_GENERATOR_EV.asStack(),
-                'P', new MaterialEntry(rod, TungstenSteel),
-                'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
-                'W', new MaterialEntry(wireGtQuadruple, Platinum));
+                'A', new MaterialEntry(TagPrefix.spring, GTMaterials.NaquadahAlloy),
+                'B', CustomTags.ZPM_CIRCUITS,
+                'C', GTItems.FIELD_GENERATOR_ZPM.asStack(),
+                'D', GTMultiMachines.ELECTRIC_BLAST_FURNACE.asStack(),
+                'E', new MaterialEntry(TagPrefix.plateDense, GTMaterials.Darmstadtium),
+                'F', new MaterialEntry(TagPrefix.wireGtHex, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide));
 
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_pyrolyse_oven", INDUSTRIAL_PYROLYSE_OVEN.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, "mega_alloy_blast_smelter", MEGA_ALLOY_BLAST_SMELTER.asStack(),
+                "ABA", "CDC", "EFE",
+                'A', new MaterialEntry(TagPrefix.spring, GTMaterials.NaquadahAlloy),
+                'B', CustomTags.ZPM_CIRCUITS,
+                'C', GTItems.FIELD_GENERATOR_ZPM.asStack(),
+                'D', GCYMMachines.BLAST_ALLOY_SMELTER.asStack(),
+                'E', new MaterialEntry(TagPrefix.plateDense, GTMaterials.Darmstadtium),
+                'F', new MaterialEntry(TagPrefix.wireGtHex, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide));
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_pyrolyse_oven",
+                INDUSTRIAL_PYROLYSE_OVEN.asStack(),
                 "PCP", "FSF", "DWD",
                 'C', IV_CIRCUITS,
                 'S', GTMultiMachines.PYROLYSE_OVEN.asStack(),
@@ -554,7 +607,8 @@ public class MiscRecipeLoader {
                 'D', new MaterialEntry(plateDense, RhodiumPlatedPalladium),
                 'W', new MaterialEntry(wireGtQuadruple, Platinum));
 
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_alloy_blast_smelter", INDUSTRIAL_BLAST_ALLOY_SMELTER.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industrial_alloy_blast_smelter",
+                INDUSTRIAL_BLAST_ALLOY_SMELTER.asStack(),
                 "PCP", "FSF", "DWD",
                 'C', IV_CIRCUITS,
                 'S', BLAST_ALLOY_SMELTER.asStack(),
@@ -572,7 +626,8 @@ public class MiscRecipeLoader {
                 'D', new MaterialEntry(plateDense, Aluminium),
                 'W', new MaterialEntry(wireGtQuadruple, Gold));
 
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "industry_chemical_reactor", INDUSTRY_CHEMICAL_REACTOR.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "industry_chemical_reactor",
+                INDUSTRY_CHEMICAL_REACTOR.asStack(),
                 "PCP", "FSF", "DWD",
                 'C', HV_CIRCUITS,
                 'S', CHEMICAL_REACTOR[3].asStack(),

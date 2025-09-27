@@ -1,4 +1,4 @@
-// 1.20.1	2025-09-27T10:39:18.7748518	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
+// 1.20.1	2025-09-27T21:21:15.5962375	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
 02f14590994ecb43d092dfcfbec2ec8998be0959 assets/gtsw/blockstates/ev_combustion.json
 629ad0810db70d0e8772d98b18dc769f1f79ffe1 assets/gtsw/blockstates/ev_gas_turbine.json
 152c9aba6c5aa9a06d24c015c760e59d2e11e814 assets/gtsw/blockstates/ev_harvester.json
@@ -40,6 +40,7 @@ b38e5a28483405d0933b03bf23728e48436de4ca assets/gtsw/blockstates/lv_mob_simulato
 2d455fb64f01dc776f93f725409bb8ccd921ed11 assets/gtsw/blockstates/max_mob_simulator.json
 e9e7d924edf9fd8be29a2474c609a01c63f2bcfb assets/gtsw/blockstates/max_nether_collector.json
 115fd7a8d0be5a0f42062ac83045379e0ae522bc assets/gtsw/blockstates/max_sieve.json
+7befe1ffcccbb47d9e5803c82e64a6abbf7ab871 assets/gtsw/blockstates/mega_alloy_blast_smelter.json
 b1ed3ba0311ef9d8f591b290417f529f89dfed85 assets/gtsw/blockstates/mv_harvester.json
 c7273a7e6211bc5c20767508c0473bd4e956fd16 assets/gtsw/blockstates/mv_mob_simulator.json
 277f9e18fee0337668fe0ac26d9b66ad367e36ad assets/gtsw/blockstates/mv_sieve.json
@@ -79,8 +80,8 @@ c9423025dd0556b1323759f39f2a4c2fa38068e1 assets/gtsw/blockstates/uxv_mob_simulat
 3469232fbd921a2394041e8a7795b22db8294377 assets/gtsw/blockstates/zpm_nether_collector.json
 d2671f800122680400230fec5aa4cca401bab103 assets/gtsw/blockstates/zpm_plasma_turbine.json
 b4a4258625cbc0e9cfd30390e58bc6a1c866187a assets/gtsw/blockstates/zpm_sieve.json
-5dc559603404b453232e130ec2d2725c5125dbff assets/gtsw/lang/en_ud.json
-c708d37670ba304220c2da6069a070f8ddbddd32 assets/gtsw/lang/en_us.json
+f5984c8e58daa7bb4c4ff5e495b8d02198e7fc92 assets/gtsw/lang/en_ud.json
+cdb0b9cce77ce51ea9557ec7b84fb856458ee8e7 assets/gtsw/lang/en_us.json
 3e5279790f8e83f1db7e6507e3acb3eb3af4ca87 assets/gtsw/models/block/machine/ev_combustion.json
 0e1e118a9efb4171c00aa6e0d50e5dec4fcac565 assets/gtsw/models/block/machine/ev_gas_turbine.json
 48b1ec42c28654b3cea709455f3ad8bb084dc0a4 assets/gtsw/models/block/machine/ev_harvester.json
@@ -93,7 +94,7 @@ ac7b1e8ccaa5f6b3e6f13887c223475e5045a1da assets/gtsw/models/block/machine/hv_har
 9276e352166f559ca4f8d0b344289a45b7ffa3ae assets/gtsw/models/block/machine/hv_mob_simulator.json
 bf8984fbb9a691b15294720fa2da454adf98523d assets/gtsw/models/block/machine/hv_sieve.json
 32753fed4aab85a77bd8cb89335da8533555668b assets/gtsw/models/block/machine/industrial_alloy_blast_smelter.json
-64fc158aa493503524973f98649c455e55cb42e3 assets/gtsw/models/block/machine/industrial_cracker.json
+c38e2151e1103bd345ad02618652a018dbb7821f assets/gtsw/models/block/machine/industrial_cracker.json
 0beab4c726e1c3418c83fa48cf6cf05bbe586d0b assets/gtsw/models/block/machine/industrial_pyrolyse_oven.json
 97e82c5099cc42cd6bf9238a6c446d0ce02e0e08 assets/gtsw/models/block/machine/industry_chemical_reactor.json
 8c37fd18198638d1a92196961e252725b05633e7 assets/gtsw/models/block/machine/iv_combustion.json
@@ -122,6 +123,7 @@ c948a0d687ff8b9b04163599ce0524bcd7f8a88e assets/gtsw/models/block/machine/lv_har
 7444ad64cb1489739490138c19565a5d4955a7af assets/gtsw/models/block/machine/max_mob_simulator.json
 c5a6c16dea765d2796cd5520ebc317feb1c9807c assets/gtsw/models/block/machine/max_nether_collector.json
 d9d8cacd618556b73559c9c3d75c9680c94ca9ec assets/gtsw/models/block/machine/max_sieve.json
+e63c316afaf588e57188d20bc751a8bed1b277b9 assets/gtsw/models/block/machine/mega_alloy_blast_smelter.json
 838f2d558f4300c0de5dbb8e44c16d643cec6e8b assets/gtsw/models/block/machine/mv_harvester.json
 1bb728f820a092c3cf3b2c46293b11625aa6c612 assets/gtsw/models/block/machine/mv_mob_simulator.json
 eedfc1e7871e7b8ef024dc00f0484182e778c446 assets/gtsw/models/block/machine/mv_sieve.json
@@ -204,6 +206,7 @@ a594e721c7df6b2c941ff12098c56db8cc452913 assets/gtsw/models/item/macro_blast_fur
 bbfaa2a60471458e6f42716eab841c6955af6ca7 assets/gtsw/models/item/max_mob_simulator.json
 6aab3f455b258a3da5a49dd679339c3a1b919c7a assets/gtsw/models/item/max_nether_collector.json
 2e2bace0e48644135ae1594007ddc26dcc811e9a assets/gtsw/models/item/max_sieve.json
+64764f2ba10573c17faf37b81b1ded41d066b077 assets/gtsw/models/item/mega_alloy_blast_smelter.json
 29c3596ebaa93dd89677fc8098b23be1490a5ae4 assets/gtsw/models/item/mv_harvester.json
 745f2dec6a7b0e3e84a6580a6177f6d9fec5d370 assets/gtsw/models/item/mv_mob_simulator.json
 689c9c811a01e5a16005c8ce1788b1e6d77fa173 assets/gtsw/models/item/mv_sieve.json

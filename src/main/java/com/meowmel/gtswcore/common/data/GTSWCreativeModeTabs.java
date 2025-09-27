@@ -1,8 +1,8 @@
 package com.meowmel.gtswcore.common.data;
 
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
-
 import com.gregtechceu.gtceu.common.data.GTItems;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 

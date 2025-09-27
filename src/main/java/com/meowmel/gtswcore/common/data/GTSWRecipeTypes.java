@@ -42,7 +42,7 @@ public class GTSWRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
 
-    //筛子
+    // 筛子
     public static final GTRecipeType SIEVE_RECIPES = GTRecipeTypes.register("sieve", MULTIBLOCK)
             .setMaxIOSize(3, 9, 0, 0).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
