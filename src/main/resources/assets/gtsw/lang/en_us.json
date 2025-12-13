@@ -18,6 +18,8 @@
   "block.gtsw.luv_mob_simulator": "§dElite mob simulator II§r",
   "block.gtsw.zpm_mob_simulator": "§cElite mob simulator III§r",
   "block.gtsw.uv_mob_simulator": "§3Ultimate mob simulator §r",
+  "block.gtsw.lp_steam_sieve": "Low Pressure Steam Sieve",
+  "block.gtsw.hp_steam_sieve": "High Pressure Steam Sieve§r",
   "block.gtsw.lv_sieve": "Basic sieve §r",
   "block.gtsw.mv_sieve": "§bAdvanced sieve §r",
   "block.gtsw.hv_sieve": "§bAdvanced sieve II§r",

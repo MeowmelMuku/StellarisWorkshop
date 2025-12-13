@@ -1,4 +1,4 @@
-// 1.20.1	2025-09-27T21:21:15.5962375	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
+// 1.20.1	2025-12-13T22:16:21.4151526	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
 02f14590994ecb43d092dfcfbec2ec8998be0959 assets/gtsw/blockstates/ev_combustion.json
 629ad0810db70d0e8772d98b18dc769f1f79ffe1 assets/gtsw/blockstates/ev_gas_turbine.json
 152c9aba6c5aa9a06d24c015c760e59d2e11e814 assets/gtsw/blockstates/ev_harvester.json
@@ -108,7 +108,7 @@ e254692ddcd07d6673af841a12e2aad4c44583f1 assets/gtsw/models/block/machine/iv_sie
 2fd25a037241bc6eb82724d94b7236d755f8d064 assets/gtsw/models/block/machine/large_fisher.json
 8e8b5f738f17c04efede7c6c0da87ec7dcc3f616 assets/gtsw/models/block/machine/large_gas_collector.json
 1e1621deae449be368d47ad5cd093953b1d66eae assets/gtsw/models/block/machine/large_sieve.json
-74d4c547542fb211cc0881d0e20a8d48c029899e assets/gtsw/models/block/machine/large_steam_input_hatch.json
+466b84191fdcc90cc0b4e5219af687a362a78223 assets/gtsw/models/block/machine/large_steam_input_hatch.json
 fe4c12170c7326d55a579fbc5b60c645e91d2862 assets/gtsw/models/block/machine/lp_steam_sieve.json
 16e2cc74c8eb921f4846fe5d860ade0dd75f25f1 assets/gtsw/models/block/machine/luv_advanced_fusion_reactor.json
 214b7748200a5b8a8a9a2ef8bda7d600877aae1b assets/gtsw/models/block/machine/luv_mob_simulator.json

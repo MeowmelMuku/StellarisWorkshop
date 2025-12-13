@@ -63,13 +63,7 @@ public class MiscRecipeLoader {
         createLargeFisherRecipe(provider);
         createLargeGasCollectorRecipe(provider);
         createSolarPanelRecipe(provider);
-        createRockBreakerRecipe(provider);
-        // 筛网配方注册
         createSieveWrapRecipes(provider);
-
-        if (GTCEu.Mods.isAE2Loaded()) {
-            createAE2Recipes(provider);
-        }
     }
 
     private static void createSieveWrapRecipes(Consumer<FinishedRecipe> provider) {
@@ -93,22 +87,6 @@ public class MiscRecipeLoader {
                 "WWW", "WSW", "WWW",
                 'W', new MaterialEntry(rod, TungstenSteel),
                 'S', ITEM_FILTER.asStack());
-    }
-
-    private static void createRockBreakerRecipe(Consumer<FinishedRecipe> provider) {
-        ROCK_BREAKER_RECIPES.recipeBuilder("netherrack")
-                .notConsumable(Blocks.NETHERRACK.asItem())
-                .outputItems(Blocks.NETHERRACK.asItem())
-                .duration(16)
-                .EUt(VHA[LV])
-                .save(provider);
-
-        ROCK_BREAKER_RECIPES.recipeBuilder("end_stone")
-                .notConsumable(Blocks.END_STONE.asItem())
-                .outputItems(Blocks.END_STONE.asItem())
-                .duration(16)
-                .EUt(VHA[HV])
-                .save(provider);
     }
 
     private static void createSolarPanelRecipe(Consumer<FinishedRecipe> provider) {
@@ -208,16 +186,22 @@ public class MiscRecipeLoader {
                 CIRCUIT, 'S', PISTON);
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_sieve_bronze",
-                STEAM_SIEVE.left().asStack(), "XXX", "PMG", "XXX", 'M', GTBlocks.BRONZE_HULL.asStack(),
-                'X', new MaterialEntry(TagPrefix.gear, GTMaterials.Bronze), 'P', CustomTags.PISTONS,
+                STEAM_SIEVE.left().asStack(),
+                "YGY", "PMG", "YXY",
+                'M', GTBlocks.BRONZE_BRICKS_HULL.asStack(),
+                'X', new MaterialEntry(TagPrefix.gear, GTMaterials.Bronze),
+                'Y', new MaterialEntry(plate, Iron),
+                'P', CustomTags.PISTONS,
                 'G', new ItemStack(Blocks.GLASS));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "steam_sieve_steel",
-                STEAM_SIEVE.right().asStack(), "PSP", "WMW", "PPP", 'M',
-                STEAM_SIEVE.left().asStack(), 'P',
-                new MaterialEntry(TagPrefix.gear, Nickel), 'S',
-                new MaterialEntry(TagPrefix.plate, GTMaterials.Steel), 'W',
-                new MaterialEntry(TagPrefix.plate, Copper));
+                STEAM_SIEVE.right().asStack(),
+                "PSP", "WMW", "PPP",
+                'M', STEAM_SIEVE.left().asStack(),
+                'X', new MaterialEntry(TagPrefix.gear, GTMaterials.Invar),
+                'Y', new MaterialEntry(plate, Steel),
+                'P', CustomTags.PISTONS,
+                'G', new ItemStack(Blocks.GLASS));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, "processing_array",
                 GTSWMultiMachines.PROCESSING_ARRAY[GTValues.IV].asStack(), "COC", "RHR", "CPC", 'C',
@@ -759,87 +743,6 @@ public class MiscRecipeLoader {
                 GTItems.ELECTRIC_MOTOR_LuV.asStack(), 'C', ZPM_CIRCUITS, 'W',
                 new MaterialEntry(TagPrefix.cableGtSingle, NiobiumTitanium), 'G',
                 GTItems.SENSOR_LuV.asStack());
-    }
-
-    static void createAE2Recipes(Consumer<FinishedRecipe> provider) {
-        FORMING_PRESS_RECIPES.recipeBuilder("ae2_processor_calculation_print")
-                .duration(20).EUt(VA[HV])
-                .notConsumable(CALCULATION_PROCESSOR_PRESS.asItem())
-                .inputItems(gem, CertusQuartz)
-                .outputItems(CALCULATION_PROCESSOR_PRINT.asItem())
-                .save(provider);
-
-        FORMING_PRESS_RECIPES.recipeBuilder("ae2_processor_engineering_print")
-                .duration(20).EUt(VA[HV])
-                .notConsumable(ENGINEERING_PROCESSOR_PRESS.asItem())
-                .inputItems(gem, Diamond)
-                .outputItems(ENGINEERING_PROCESSOR_PRINT.asItem())
-                .save(provider);
-
-        FORMING_PRESS_RECIPES.recipeBuilder("ae2_processor_logic_print")
-                .duration(20).EUt(VA[HV])
-                .notConsumable(LOGIC_PROCESSOR_PRESS.asItem())
-                .inputItems(ingot, Gold)
-                .outputItems(LOGIC_PROCESSOR_PRINT.asItem())
-                .save(provider);
-
-        FORMING_PRESS_RECIPES.recipeBuilder("ae2_processor_silicon_print")
-                .duration(20).EUt(VA[HV])
-                .notConsumable(SILICON_PRESS.asItem())
-                .inputItems(ingot, Silicon)
-                .outputItems(SILICON_PRINT.asItem())
-                .save(provider);
-
-        FORMING_PRESS_RECIPES.recipeBuilder("ae2_processor_silicon_print2")
-                .duration(20).EUt(VA[HV])
-                .notConsumable(SILICON_PRESS.asItem())
-                .inputItems(SILICON.asItem())
-                .outputItems(SILICON_PRINT.asItem())
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("ae2_processor_calculation")
-                .duration(1).EUt(1)
-                .inputItems(CALCULATION_PROCESSOR_PRINT.asItem())
-                .inputItems(SILICON_PRINT.asItem())
-                .inputItems(dust, Redstone)
-                .outputItems(CALCULATION_PROCESSOR.asItem())
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("ae2_processor_engineering")
-                .duration(1).EUt(1)
-                .inputItems(ENGINEERING_PROCESSOR_PRINT.asItem())
-                .inputItems(SILICON_PRINT.asItem())
-                .inputItems(dust, Redstone)
-                .outputItems(ENGINEERING_PROCESSOR.asItem())
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("ae2_processor_logic")
-                .duration(1).EUt(1)
-                .inputItems(LOGIC_PROCESSOR_PRINT.asItem())
-                .inputItems(SILICON_PRINT.asItem())
-                .inputItems(dust, Redstone)
-                .outputItems(LOGIC_PROCESSOR.asItem())
-                .save(provider);
-
-        MIXER_RECIPES.recipeBuilder("ae2_fluix_crystal")
-                .duration(20).EUt(VA[LV])
-                .inputItems(CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .inputItems(dust, Redstone)
-                .inputItems(QUARTZ)
-                .outputItems(FLUIX_CRYSTAL.stack(2))
-                .save(provider);
-
-        MACERATOR_RECIPES.recipeBuilder("ae2_certus_quartz_dust")
-                .duration(20).EUt(VA[LV])
-                .inputItems(CERTUS_QUARTZ_CRYSTAL.asItem())
-                .outputItems(CERTUS_QUARTZ_DUST.asItem())
-                .save(provider);
-
-        MACERATOR_RECIPES.recipeBuilder("ae2_fluix_dust")
-                .duration(20).EUt(VA[LV])
-                .inputItems(FLUIX_CRYSTAL.asItem())
-                .outputItems(FLUIX_DUST.asItem())
-                .save(provider);
     }
 
     static void createTreeFarmRecipe(Consumer<FinishedRecipe> provider, String name, ItemLike sapling, ItemLike log,

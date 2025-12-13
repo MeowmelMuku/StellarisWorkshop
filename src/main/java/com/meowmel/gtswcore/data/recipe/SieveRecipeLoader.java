@@ -99,7 +99,7 @@ public class SieveRecipeLoader {
         // 粉碎末地石
         createSieveRecipe(provider, new ItemStack(Blocks.END_STONE), 1, 1, GTMaterials.Aluminium, GTMaterials.Bauxite,
                 GTMaterials.Chromite, GTMaterials.Gold,
-                GTMaterials.IlmeniteSlag, GTMaterials.Magnetite, GTMaterials.VanadiumMagnetite);
+                GTMaterials.Ilmenite, GTMaterials.Magnetite, GTMaterials.VanadiumMagnetite);
         createSieveRecipe(provider, new ItemStack(Blocks.END_STONE), 1, 2, GTMaterials.Bornite, GTMaterials.Cooperite,
                 GTMaterials.Scheelite,
                 GTMaterials.Tungstate);
@@ -121,7 +121,7 @@ public class SieveRecipeLoader {
                     .notConsumable(wrap);
             for (Material material : materials)
                 recipes.chancedOutput(TagPrefix.rawOre, material, 500 * booster, 500);
-            recipes.duration(tier * 20 * materials.length)
+            recipes.duration(tier * 10 * materials.length)
                     .save(provider);
         }
     }

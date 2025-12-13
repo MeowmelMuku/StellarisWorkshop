@@ -1268,7 +1268,7 @@ public class GTSWMultiMachines {
             .register();
 
     public static Material getCasingMaterial(int tier) {
-        if (tier == LuV) return GTMaterials.Naquadria;
+        if (tier == LuV) return GTMaterials.Naquadah;
         if (tier == ZPM) return GTMaterials.Tritanium;
         return GTMaterials.Neutronium;
     }
