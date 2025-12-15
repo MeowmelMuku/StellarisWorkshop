@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.arbor.gtnn.data.GTNNMaterials;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.meowmel.gtswcore.common.data.GTSWItems.*;
 import static com.meowmel.gtswcore.common.data.GTSWRecipeTypes.SIEVE_RECIPES;
+import static dev.arbor.gtnn.data.GTNNMaterials.Dolomite;
 
 public class SieveRecipeLoader {
 
@@ -43,11 +45,14 @@ public class SieveRecipeLoader {
                 GTMaterials.Tin, GTMaterials.Galena,
                 GTMaterials.Lead, GTMaterials.Silver);
         createSieveRecipe(provider, new ItemStack(Blocks.GRAVEL), 1, 2, GTMaterials.Lepidolite, GTMaterials.RockSalt,
-                GTMaterials.Salt,
+                GTMaterials.Salt, GTMaterials.Realgar,
                 GTMaterials.Soapstone, GTMaterials.Bentonite);
         createSieveRecipe(provider, new ItemStack(Blocks.GRAVEL), 1, 3, GTMaterials.Bauxite, GTMaterials.Kyanite,
                 GTMaterials.Mica,
-                GTMaterials.Pollucite, GTMaterials.Glowstone);
+                GTMaterials.Pollucite, GTMaterials.Redstone);
+        createSieveRecipe(provider, new ItemStack(Blocks.GRAVEL), 1, 4, GTNNMaterials.Dolomite,
+                GTNNMaterials.Wollastonite,
+                GTMaterials.Trona, GTNNMaterials.Kaolinite);
         // 沙子
         createSieveRecipe(provider, new ItemStack(Blocks.SAND), 1, 1, GTMaterials.Asbestos,
                 GTMaterials.BasalticMineralSand, GTMaterials.CassiteriteSand, GTMaterials.Diatomite,
@@ -88,12 +93,12 @@ public class SieveRecipeLoader {
                 GTMaterials.Gold, GTMaterials.Stibnite, GTMaterials.Tetrahedrite);
         createSieveRecipe(provider, new ItemStack(Blocks.NETHERRACK), 1, 2, GTMaterials.NetherQuartz,
                 GTMaterials.Pyrite, GTMaterials.Quartzite, GTMaterials.Sphalerite,
-                GTMaterials.Sulfur, GTMaterials.Spessartine, GTMaterials.Tantalite);
+                GTMaterials.Sulfur, GTMaterials.Spessartine, GTMaterials.Tantalite, GTMaterials.Alunite);
         createSieveRecipe(provider, new ItemStack(Blocks.NETHERRACK), 1, 3, GTMaterials.Beryllium,
                 GTMaterials.BlueTopaz, GTMaterials.Bornite, GTMaterials.Chalcocite,
-                GTMaterials.Emerald, GTMaterials.Glowstone, GTMaterials.Thorium, GTMaterials.Topaz);
+                GTMaterials.Emerald, GTMaterials.Molybdenum, GTMaterials.Thorium, GTMaterials.Topaz);
         createSieveRecipe(provider, new ItemStack(Blocks.NETHERRACK), 1, 4, GTMaterials.Bastnasite,
-                GTMaterials.Electrotine, GTMaterials.Molybdenite, GTMaterials.Monazite,
+                GTMaterials.Electrotine, GTMaterials.Molybdenite, GTMaterials.Monazite, GTMaterials.Barite,
                 GTMaterials.Neodymium, GTMaterials.Powellite, GTMaterials.Wulfenite);
 
         // 粉碎末地石
@@ -101,10 +106,13 @@ public class SieveRecipeLoader {
                 GTMaterials.Chromite, GTMaterials.Gold,
                 GTMaterials.Ilmenite, GTMaterials.Magnetite, GTMaterials.VanadiumMagnetite);
         createSieveRecipe(provider, new ItemStack(Blocks.END_STONE), 1, 2, GTMaterials.Bornite, GTMaterials.Cooperite,
-                GTMaterials.Scheelite,
+                GTMaterials.Scheelite, GTMaterials.Lithium,
                 GTMaterials.Tungstate);
         createSieveRecipe(provider, new ItemStack(Blocks.END_STONE), 1, 3, GTMaterials.Naquadah,
                 GTMaterials.Pitchblende, GTMaterials.Plutonium239,
+                GTMaterials.Uraninite);
+        createSieveRecipe(provider, new ItemStack(Blocks.END_STONE), 1, 4, GTMaterials.Palladium,
+                GTMaterials.Platinum,
                 GTMaterials.Uraninite);
     }
 
