@@ -107,7 +107,7 @@ public class VoidMiningRecipeLoader {
         //末地
         EUt *= 16;
         duration *= 2;
-        
+
         VOID_MINER_RECIPES.recipeBuilder("aluminium_drill_mining_1")
                 .notConsumable(toolHeadDrill, Aluminium)
                 .EUt(EUt)
