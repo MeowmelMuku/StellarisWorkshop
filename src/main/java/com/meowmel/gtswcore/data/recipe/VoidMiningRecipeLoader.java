@@ -19,7 +19,7 @@ public class VoidMiningRecipeLoader {
         int duration = 40;
         int EUt = VA[0];
 
-        //主世界
+        // 主世界
 
         VOID_MINER_RECIPES.recipeBuilder("bronze_drill_mining_1")
                 .notConsumable(toolHeadDrill, Bronze)
@@ -66,7 +66,7 @@ public class VoidMiningRecipeLoader {
                 .circuitMeta(4)
                 .save(provider);
 
-        //地狱
+        // 地狱
         EUt *= 4;
         VOID_MINER_RECIPES.recipeBuilder("invar_drill_mining_1")
                 .notConsumable(toolHeadDrill, Invar)
@@ -75,8 +75,8 @@ public class VoidMiningRecipeLoader {
                 .chancedOutput(ore, Sulfur, 5000, 500)
                 .chancedOutput(ore, Sphalerite, 5000, 500)
                 .chancedOutput(ore, Emerald, 5000, 500)
-                .chancedOutput(ore, Molybdenum , 5000, 500)
-                .chancedOutput(ore, Barite , 5000, 500)
+                .chancedOutput(ore, Molybdenum, 5000, 500)
+                .chancedOutput(ore, Barite, 5000, 500)
                 .circuitMeta(1)
                 .save(provider);
 
@@ -84,11 +84,11 @@ public class VoidMiningRecipeLoader {
                 .notConsumable(toolHeadDrill, Invar)
                 .EUt(EUt)
                 .duration(duration)
-                .chancedOutput(ore, Stibnite , 5000, 500)
-                .chancedOutput(ore, Tetrahedrite , 5000, 500)
-                .chancedOutput(ore, NetherQuartz , 5000, 500)
-                .chancedOutput(ore, Quartzite  , 5000, 500)
-                .chancedOutput(ore, Alunite  , 5000, 500)
+                .chancedOutput(ore, Stibnite, 5000, 500)
+                .chancedOutput(ore, Tetrahedrite, 5000, 500)
+                .chancedOutput(ore, NetherQuartz, 5000, 500)
+                .chancedOutput(ore, Quartzite, 5000, 500)
+                .chancedOutput(ore, Alunite, 5000, 500)
                 .circuitMeta(2)
                 .save(provider);
 
@@ -104,7 +104,7 @@ public class VoidMiningRecipeLoader {
                 .circuitMeta(3)
                 .save(provider);
 
-        //末地
+        // 末地
         EUt *= 16;
         duration *= 2;
 
@@ -115,8 +115,8 @@ public class VoidMiningRecipeLoader {
                 .chancedOutput(ore, Aluminium, 5000, 500)
                 .chancedOutput(ore, Chromite, 5000, 500)
                 .chancedOutput(ore, Gold, 5000, 500)
-                .chancedOutput(ore, VanadiumMagnetite , 5000, 500)
-                .chancedOutput(ore, Ilmenite , 5000, 500)
+                .chancedOutput(ore, VanadiumMagnetite, 5000, 500)
+                .chancedOutput(ore, Ilmenite, 5000, 500)
                 .circuitMeta(1)
                 .save(provider);
 
@@ -124,11 +124,11 @@ public class VoidMiningRecipeLoader {
                 .notConsumable(toolHeadDrill, Aluminium)
                 .EUt(EUt)
                 .duration(duration)
-                .chancedOutput(ore, Cooperite , 5000, 500)
+                .chancedOutput(ore, Cooperite, 5000, 500)
                 .chancedOutput(ore, Scheelite, 5000, 500)
-                .chancedOutput(ore, Lithium , 5000, 500)
-                .chancedOutput(ore, Tungstate  , 5000, 500)
-                .chancedOutput(ore, Uraninite  , 5000, 500)
+                .chancedOutput(ore, Lithium, 5000, 500)
+                .chancedOutput(ore, Tungstate, 5000, 500)
+                .chancedOutput(ore, Uraninite, 5000, 500)
                 .circuitMeta(2)
                 .save(provider);
 
@@ -136,11 +136,11 @@ public class VoidMiningRecipeLoader {
                 .notConsumable(toolHeadDrill, Aluminium)
                 .EUt(EUt)
                 .duration(duration)
-                .chancedOutput(ore, Palladium  , 100, 500)
-                .chancedOutput(ore, Platinum , 100, 500)
-                .chancedOutput(ore, Pitchblende  , 5000, 500)
-                .chancedOutput(ore, Plutonium239   , 100, 500)
-                .chancedOutput(ore, Naquadah   , 100, 500)
+                .chancedOutput(ore, Palladium, 100, 500)
+                .chancedOutput(ore, Platinum, 100, 500)
+                .chancedOutput(ore, Pitchblende, 5000, 500)
+                .chancedOutput(ore, Plutonium239, 100, 500)
+                .chancedOutput(ore, Naquadah, 100, 500)
                 .circuitMeta(3)
                 .save(provider);
 
