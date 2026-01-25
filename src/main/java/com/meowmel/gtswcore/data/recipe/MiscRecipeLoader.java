@@ -1,18 +1,14 @@
 package com.meowmel.gtswcore.data.recipe;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GCYMMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +17,6 @@ import net.minecraft.world.level.block.Blocks;
 
 import com.meowmel.gtswcore.common.data.GTSWMachines;
 import com.meowmel.gtswcore.common.data.GTSWMultiMachines;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -59,7 +54,6 @@ public class MiscRecipeLoader {
         createMultiblockRecipes(provider);
         createGeneratorRecipes(provider);
         createMobSimulatorRecipes(provider);
-        createSteamVoidMinerRecipe(provider);
         createLargeFisherRecipe(provider);
         createLargeGasCollectorRecipe(provider);
         createSolarPanelRecipe(provider);
@@ -762,59 +756,6 @@ public class MiscRecipeLoader {
         }
 
         builder.save(provider);
-    }
-
-    static void createSteamVoidMinerRecipe(Consumer<FinishedRecipe> provider) {
-        int duration = 20 * 2;
-        int EUt = 16;
-        createChancedInput(STEAM_VOID_MINER_RECIPES
-                .recipeBuilder("bronze_drill_mining"), toolHeadDrill, Bronze, 400, 0)
-                .EUt(EUt)
-                .duration(duration)
-                .chancedOutput(ore, Silver, 1000, 0)
-                .chancedOutput(ore, Iron, 1000, 0)
-                .chancedOutput(ore, Tin, 1000, 0)
-                .chancedOutput(ore, Copper, 1000, 0)
-                .chancedOutput(ore, Coal, 2000, 0)
-                .chancedOutput(new ItemStack(CLAY), 2000, 0)
-                .save(provider);
-
-        createChancedInput(STEAM_VOID_MINER_RECIPES
-                .recipeBuilder("steel_drill_mining"), toolHeadDrill, Steel, 200, 0)
-                .EUt(EUt)
-                .duration(duration)
-                .chancedOutput(ore, Diamond, 1000, 0)
-                .chancedOutput(ore, Redstone, 1000, 0)
-                .chancedOutput(ore, Lapis, 1000, 0)
-                .chancedOutput(ore, Salt, 1000, 0)
-                .chancedOutput(ore, Gold, 1000, 0)
-                .save(provider);
-
-        createChancedInput(STEAM_VOID_MINER_RECIPES
-                .recipeBuilder("invar_drill_mining"), toolHeadDrill, Invar, 200, 0)
-                .EUt(EUt)
-                .duration(duration)
-                .chancedOutput(ore, Lead, 1000, 0)
-                .chancedOutput(ore, Nickel, 1000, 0)
-                .chancedOutput(ore, Oilsands, 1000, 0)
-                .save(provider);
-    }
-
-    static GTRecipeBuilder createChancedInput(GTRecipeBuilder builder, TagPrefix tagPrefix, @NotNull Material material,
-                                              int chance, int tierChanceBoost) {
-        if (0 >= chance || chance > ChanceLogic.getMaxChancedValue()) {
-            GTCEu.LOGGER.error("Chance cannot be less or equal to 0 or more than {}. Actual: {}.",
-                    ChanceLogic.getMaxChancedValue(), chance, new Throwable());
-            return builder;
-        }
-        int lastChance = builder.chance;
-        int lastTierChanceBoost = builder.tierChanceBoost;
-        builder.chance = chance;
-        builder.tierChanceBoost = tierChanceBoost;
-        builder.inputItems(tagPrefix, material);
-        builder.chance = lastChance;
-        builder.tierChanceBoost = lastTierChanceBoost;
-        return builder;
     }
 
     private static void createLargeFisherRecipe(Consumer<FinishedRecipe> provider) {

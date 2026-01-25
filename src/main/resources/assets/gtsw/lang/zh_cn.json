@@ -83,7 +83,7 @@
   "gtsw.tooltip.laser_hatch": "允许使用激光仓",
   "gtsw.tooltip.leveled_hull_machine.0": "必须使用相同的机械方块",
   "gtsw.multiblock.pattern.error.hulls": "必须使用相同的机械方块",
-  "gtceu.steam_void_miner": "蒸汽虚空采矿",
+  "gtceu.void_miner": "虚空采矿",
   "gtceu.mob_simulator": "生物模拟",
   "gtceu.harvester": "收割",
   "gtceu.tree_farm": "工业树场",

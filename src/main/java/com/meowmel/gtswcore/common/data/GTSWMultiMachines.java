@@ -215,7 +215,7 @@ public class GTSWMultiMachines {
             .rotationState(RotationState.ALL)
             .tooltips(Component.translatable("gtsw.machine.large_steam_machine.tooltip"))
             .appearanceBlock(CASING_INDUSTRIAL_STEAM)
-            .recipeType(GTSWRecipeTypes.STEAM_VOID_MINER_RECIPES)
+            .recipeType(GTSWRecipeTypes.VOID_MINER_RECIPES)
             .recipeModifier(GTSWMultiMachines::steamVoidMinerMachineRecipeModifier, true)
             .addOutputLimit(ItemRecipeCapability.CAP, 6)
             .pattern(definition -> FactoryBlockPattern.start()

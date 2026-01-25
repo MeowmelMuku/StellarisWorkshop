@@ -20,7 +20,6 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.meowmel.gtswcore.common.data.GTSWItems.*;
 import static com.meowmel.gtswcore.common.data.GTSWRecipeTypes.SIEVE_RECIPES;
-import static dev.arbor.gtnn.data.GTNNMaterials.Dolomite;
 
 public class SieveRecipeLoader {
 
@@ -123,13 +122,13 @@ public class SieveRecipeLoader {
             booster++;
             GTRecipeBuilder recipes = SIEVE_RECIPES.recipeBuilder(
                     input.getItem() + "_sieve_to_" + materials[0].getName() + "_" + wrap.asStack().getItem());
-            recipes.EUt(VA[tier])
+            recipes.EUt(VA[tier - 1])
                     .circuitMeta(circuit)
                     .inputItems(input)
                     .notConsumable(wrap);
             for (Material material : materials)
-                recipes.chancedOutput(TagPrefix.rawOre, material, 500 * booster, 500);
-            recipes.duration(tier * 10 * materials.length)
+                recipes.chancedOutput(TagPrefix.rawOre, material, 2500 + 500 * booster, 500);
+            recipes.duration(tier * 10)
                     .save(provider);
         }
     }
