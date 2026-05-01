@@ -23,6 +23,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("bronze_drill_mining_1")
                 .notConsumable(toolHeadDrill, Bronze)
+                .circuitMeta(1)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Silver, 2500, 500)
@@ -35,6 +36,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("bronze_drill_mining_2")
                 .notConsumable(toolHeadDrill, Bronze)
+                .circuitMeta(2)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Diamond, 2500, 500)
@@ -47,6 +49,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("bronze_drill_mining_3")
                 .notConsumable(toolHeadDrill, Bronze)
+                .circuitMeta(3)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Lead, 1000, 0)
@@ -57,6 +60,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("bronze_drill_mining_4")
                 .notConsumable(toolHeadDrill, Bronze)
+                .circuitMeta(4)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(new ItemStack(CLAY), 5000, 500)
@@ -70,6 +74,7 @@ public class VoidMiningRecipeLoader {
         EUt *= 4;
         VOID_MINER_RECIPES.recipeBuilder("invar_drill_mining_1")
                 .notConsumable(toolHeadDrill, Invar)
+                .circuitMeta(1)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Sulfur, 5000, 500)
@@ -82,6 +87,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("invar_drill_mining_2")
                 .notConsumable(toolHeadDrill, Invar)
+                .circuitMeta(2)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Stibnite, 5000, 500)
@@ -94,6 +100,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("invar_drill_mining_3")
                 .notConsumable(toolHeadDrill, Invar)
+                .circuitMeta(3)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(new ItemStack(MAGMA_BLOCK), 5000, 500)
@@ -110,6 +117,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("aluminium_drill_mining_1")
                 .notConsumable(toolHeadDrill, Aluminium)
+                .circuitMeta(1)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Aluminium, 5000, 500)
@@ -122,6 +130,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("aluminium_drill_mining_2")
                 .notConsumable(toolHeadDrill, Aluminium)
+                .circuitMeta(2)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Cooperite, 5000, 500)
@@ -134,6 +143,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("aluminium_drill_mining_3")
                 .notConsumable(toolHeadDrill, Aluminium)
+                .circuitMeta(3)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(ore, Palladium, 100, 500)
@@ -146,6 +156,7 @@ public class VoidMiningRecipeLoader {
 
         VOID_MINER_RECIPES.recipeBuilder("aluminium_drill_mining_4")
                 .notConsumable(toolHeadDrill, Aluminium)
+                .circuitMeta(4)
                 .EUt(EUt)
                 .duration(duration)
                 .chancedOutput(new ItemStack(END_STONE), 5000, 500)

@@ -33,7 +33,7 @@ public class GTSWRecipeTypes {
             .setSound(GTSoundEntries.SCIENCE);
 
     public static final GTRecipeType VOID_MINER_RECIPES = GTRecipeTypes.register("steam_void_miner", MULTIBLOCK)
-            .setMaxIOSize(1, 6, 1, 0).setEUIO(IO.IN)
+            .setMaxIOSize(2, 6, 1, 0).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
 
