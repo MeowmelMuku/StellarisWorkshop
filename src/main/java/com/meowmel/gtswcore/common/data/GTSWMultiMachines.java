@@ -57,7 +57,6 @@ import com.meowmel.gtswcore.common.machine.multiblock.electric.*;
 import com.meowmel.gtswcore.common.machine.multiblock.part.LargeSteamHatchPartMachine;
 import com.meowmel.gtswcore.common.machine.multiblock.steam.IndustrialSteamParallelMultiblockMachine;
 import com.meowmel.gtswcore.common.machine.multiblock.steam.SteamOreWaherMachine;
-import com.meowmel.gtswcore.common.machine.multiblock.steam.SteamVoidMinerMachine;
 import com.meowmel.gtswcore.config.GTSWConfig;
 import org.jetbrains.annotations.NotNull;
 
@@ -210,37 +209,38 @@ public class GTSWMultiMachines {
                     GTSWCore.id("block/multiblock/steam_foundry"))
             .register();
 
-    public static final MultiblockMachineDefinition STEAM_VOID_MINER = REGISTRATE
-            .multiblock("steam_void_miner", SteamVoidMinerMachine::new)
+    public static final MultiblockMachineDefinition VOID_MINER = REGISTRATE
+            .multiblock("void_miner", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
-            .tooltips(Component.translatable("gtsw.machine.large_steam_machine.tooltip"))
-            .appearanceBlock(CASING_INDUSTRIAL_STEAM)
+            .appearanceBlock(CASING_STEEL_SOLID)
             .recipeType(GTSWRecipeTypes.VOID_MINER_RECIPES)
-            .recipeModifier(GTSWMultiMachines::steamVoidMinerMachineRecipeModifier, true)
-            .addOutputLimit(ItemRecipeCapability.CAP, 6)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("F   F", "F   F", "F   F", "XXXXX", "     ", "     ", "     ", "     ", "     ", "     ",
-                            "     ")
-                    .aisle("     ", "     ", "     ", "XXXXX", " XXX ", "  F  ", "  F  ", "  F  ", "     ", "     ",
-                            "     ")
-                    .aisle("     ", "     ", "     ", "XXXXX", " XXX ", " FCF ", " FCF ", " FCF ", "  F  ", "  F  ",
-                            "  F  ")
-                    .aisle("     ", "     ", "     ", "XXXXX", " XXX ", "  F  ", "  F  ", "  F  ", "     ", "     ",
-                            "     ")
-                    .aisle("F   F", "F   F", "F   F", "XXSXX", "     ", "     ", "     ", "     ", "     ", "     ",
-                            "     ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where(' ', Predicates.any())
-                    .where('C', blocks(CASING_BRONZE_PIPE.get()))
-                    .where('F',
-                            blocks(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Steel).get()))
-                    .where('X', blocks(CASING_INDUSTRIAL_STEAM.get()).setMinGlobalLimited(20)
-                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
-                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1))
-                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
-                            .or(Predicates.abilities(IMPORT_ITEMS, EXPORT_ITEMS)))
-                    .build())
-            .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
+            .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT, GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK,
+                    BATCH_MODE)
+            .pattern(definition -> {
+                var casing = blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(20);
+                var abilities = Predicates.autoAbilities(definition.getRecipeTypes())
+                        .or(Predicates.autoAbilities(true, true, true));
+                return FactoryBlockPattern.start()
+                        .aisle("F   F", "F   F", "F   F", "XXXXX", "     ", "     ", "     ", "     ", "     ", "     ",
+                                "     ")
+                        .aisle("     ", "     ", "     ", "XXXXX", " XXX ", "  F  ", "  F  ", "  F  ", "     ", "     ",
+                                "     ")
+                        .aisle("     ", "     ", "     ", "XXXXX", " XXX ", " FCF ", " FCF ", " FCF ", "  F  ", "  F  ",
+                                "  F  ")
+                        .aisle("     ", "     ", "     ", "XXXXX", " XXX ", "  F  ", "  F  ", "  F  ", "     ", "     ",
+                                "     ")
+                        .aisle("F   F", "F   F", "F   F", "XXSXX", "     ", "     ", "     ", "     ", "     ", "     ",
+                                "     ")
+                        .where('S', Predicates.controller(blocks(definition.getBlock())))
+                        .where(' ', Predicates.any())
+                        .where('C', blocks(CASING_STEEL_PIPE.get()))
+                        .where('F',
+                                blocks(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Steel)
+                                        .get()))
+                        .where('X', casing.or(abilities))
+                        .build();
+            })
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/bedrock_ore_miner"))
             .register();
 

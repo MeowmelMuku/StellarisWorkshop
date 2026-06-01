@@ -337,11 +337,11 @@ public class MiscRecipeLoader {
                 'P', new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.Steel),
                 'T', GTMachines.STEAM_HATCH.asStack());
 
-        COMPRESSOR_RECIPES.recipeBuilder("steam_void_miner")
+        COMPRESSOR_RECIPES.recipeBuilder("void_miner")
                 .EUt(VA[LV])
                 .duration(20 * 10)
                 .inputItems(STEAM_MINER.right().asStack(16))
-                .outputItems(GTSWMultiMachines.STEAM_VOID_MINER)
+                .outputItems(GTSWMultiMachines.VOID_MINER)
                 .save(provider);
     }
 

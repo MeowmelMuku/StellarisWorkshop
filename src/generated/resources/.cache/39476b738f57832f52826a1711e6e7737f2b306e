@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-13T22:16:21.4151526	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
+// 1.20.1	2026-06-01T18:19:22.6959308	Registrate Provider for gtsw [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (en_us/en_ud/zh_cn)]
 02f14590994ecb43d092dfcfbec2ec8998be0959 assets/gtsw/blockstates/ev_combustion.json
 629ad0810db70d0e8772d98b18dc769f1f79ffe1 assets/gtsw/blockstates/ev_gas_turbine.json
 152c9aba6c5aa9a06d24c015c760e59d2e11e814 assets/gtsw/blockstates/ev_harvester.json
@@ -54,7 +54,6 @@ f708a429d81bdc6df8f3066502ac905adfa8b7af assets/gtsw/blockstates/opv_nether_coll
 ad91d0feef56ccf91efa5e6b96621cdfa3c3bb1f assets/gtsw/blockstates/steam_foundry.json
 4b2ac109cd8088b269dea118cc1702fd47dba959 assets/gtsw/blockstates/steam_mixer.json
 349042d0bbcc2460443a39f477f0a627362fe65b assets/gtsw/blockstates/steam_ore_washer.json
-6aa6dfb5b3642e0068bdc03e9f0f80298cfbe1ee assets/gtsw/blockstates/steam_void_miner.json
 6976276262f034a2e95f2b7049ed390b3ed2f490 assets/gtsw/blockstates/tree_farm.json
 e36ac00fcd4c82bf8d053b610b13ba3df35c7104 assets/gtsw/blockstates/uev_mob_simulator.json
 9fc4699e2aa4d65b81065c84c1b5f4d24394df47 assets/gtsw/blockstates/uev_nether_collector.json
@@ -75,13 +74,14 @@ b8c87b190c70d1324f398c60a78c7920fb897717 assets/gtsw/blockstates/uv_mob_simulato
 c9423025dd0556b1323759f39f2a4c2fa38068e1 assets/gtsw/blockstates/uxv_mob_simulator.json
 9424927fe6462bd78996319c86b91b13151e2053 assets/gtsw/blockstates/uxv_nether_collector.json
 55d3ef6d97c803dfa6c854f7ab96236000120988 assets/gtsw/blockstates/uxv_sieve.json
+846fa4e3ba3cea71d9eb0cdd7aa037032650f108 assets/gtsw/blockstates/void_miner.json
 29d05a55be41b5f20bbb1f06036ce6a0cb47a1fe assets/gtsw/blockstates/zpm_advanced_fusion_reactor.json
 5559d7d250d979873612b3504744c5aa88185d4b assets/gtsw/blockstates/zpm_mob_simulator.json
 3469232fbd921a2394041e8a7795b22db8294377 assets/gtsw/blockstates/zpm_nether_collector.json
 d2671f800122680400230fec5aa4cca401bab103 assets/gtsw/blockstates/zpm_plasma_turbine.json
 b4a4258625cbc0e9cfd30390e58bc6a1c866187a assets/gtsw/blockstates/zpm_sieve.json
-f5984c8e58daa7bb4c4ff5e495b8d02198e7fc92 assets/gtsw/lang/en_ud.json
-cdb0b9cce77ce51ea9557ec7b84fb856458ee8e7 assets/gtsw/lang/en_us.json
+8edcdb8a863948907abc37e1ebb9da37e2504bbf assets/gtsw/lang/en_ud.json
+a2602c9108580ecbe74803f4d4d1722ee0769b37 assets/gtsw/lang/en_us.json
 3e5279790f8e83f1db7e6507e3acb3eb3af4ca87 assets/gtsw/models/block/machine/ev_combustion.json
 0e1e118a9efb4171c00aa6e0d50e5dec4fcac565 assets/gtsw/models/block/machine/ev_gas_turbine.json
 48b1ec42c28654b3cea709455f3ad8bb084dc0a4 assets/gtsw/models/block/machine/ev_harvester.json
@@ -137,7 +137,6 @@ f24469a596e9da884bc115b623aa2c163d6f447f assets/gtsw/models/block/machine/steam_
 721cfb729b913eb2ac029044956feb4972163ecd assets/gtsw/models/block/machine/steam_foundry.json
 5c93b4bc3b95f4fc9dba85e8b199f9ee562f64b5 assets/gtsw/models/block/machine/steam_mixer.json
 6f0dc38a1c8d47e6e0b5cb1219776a4c25a580d9 assets/gtsw/models/block/machine/steam_ore_washer.json
-7653017b0324a93354fd4a26450abeb12716287e assets/gtsw/models/block/machine/steam_void_miner.json
 47bbcb41b0b96c1bdbcaca7bff71750adc74696d assets/gtsw/models/block/machine/tree_farm.json
 10778e5496187469b6228072e8c43f1649d4faa5 assets/gtsw/models/block/machine/uev_mob_simulator.json
 88af900ad8cc55b166d50a804988d193ccf2bd13 assets/gtsw/models/block/machine/uev_nether_collector.json
@@ -158,6 +157,7 @@ b5a6d9c29d5bb0090b05422c33f82201d9f09909 assets/gtsw/models/block/machine/uv_mob
 299e57b8afd302771e7601f4b2a41c2e790711cd assets/gtsw/models/block/machine/uxv_mob_simulator.json
 9f007f151642bfb7a1b7cde0529900ff8d14114b assets/gtsw/models/block/machine/uxv_nether_collector.json
 02822e0b299eda0707aec99db59767c1eed64dd4 assets/gtsw/models/block/machine/uxv_sieve.json
+3ad6189a44e695ac890f8f152bbc39e8bf1f71fd assets/gtsw/models/block/machine/void_miner.json
 b33d392394a56b7a8fbf10aa51a44d8a413d4ccf assets/gtsw/models/block/machine/zpm_advanced_fusion_reactor.json
 517fca9b0dc4fc49bf349b0dade56dba120636d8 assets/gtsw/models/block/machine/zpm_mob_simulator.json
 ce6c4a3156c91b878df37b8f7d2c726b5997013a assets/gtsw/models/block/machine/zpm_nether_collector.json
@@ -221,7 +221,6 @@ dc78e61f5a0b6b8577fe13006e67c172ffec138a assets/gtsw/models/item/steam_centrifug
 e2717886bdc3a3ee3e66db3e1b710f2b9dc5ce20 assets/gtsw/models/item/steam_foundry.json
 89386875ffe6c048fe3b2101ebfc0c4d99ea1e98 assets/gtsw/models/item/steam_mixer.json
 65fedee19489cca19d5476da69574f87db0ddf3d assets/gtsw/models/item/steam_ore_washer.json
-c2b64d509ab4ad082b66cfed5152fe7196065fe3 assets/gtsw/models/item/steam_void_miner.json
 1a81a2ea3004fedab9eae064ff19bfc328ed3417 assets/gtsw/models/item/steel_sieve_net.json
 e2465f21655bec5802900fe98d8163df0bcf5dcf assets/gtsw/models/item/titanium_sieve_net.json
 5c6ed6784737a522548d5b10fbb9899746f1bd2f assets/gtsw/models/item/tree_farm.json
@@ -245,6 +244,7 @@ be69343c5daa92f9231e4a283fd3297817f2898b assets/gtsw/models/item/uv_plasma_turbi
 617b583059bae84b2d150403c67509dabce914cc assets/gtsw/models/item/uxv_mob_simulator.json
 dafd771f5b499dfde1a4d997cbfc5c7db6389c6b assets/gtsw/models/item/uxv_nether_collector.json
 8c900c6679a8ace7de7d4be2a1aa5cf9dc806a54 assets/gtsw/models/item/uxv_sieve.json
+0864287456e3aa63694c6dcdedef4332c530bcf6 assets/gtsw/models/item/void_miner.json
 320b452d890e23972010e8341fab073aa7b6e382 assets/gtsw/models/item/zpm_advanced_fusion_reactor.json
 b030ada91394e38d1d9bb4a2349f194c371df7c4 assets/gtsw/models/item/zpm_mob_simulator.json
 0914cf9d0a1caec1f3d424feb142ed6a4c47a03f assets/gtsw/models/item/zpm_nether_collector.json
